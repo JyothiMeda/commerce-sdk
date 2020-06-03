@@ -299,8 +299,10 @@ export async function renderTemplates(buildConfig: any): Promise<void> {
   const apiModelEntries = await Promise.all(
     apiFamilyNames.map(
       async (familyName): Promise<[string, WebApiBaseUnit[]]> => {
-        const apiModels = await Promise.all(
-          processApiFamily(familyName, apiConfig, buildConfig.inputDir)
+        const apiModels = await processApiFamily(
+          familyName,
+          apiConfig,
+          buildConfig.inputDir
         );
         renderApiFamily(familyName, apiModels, buildConfig.renderDir);
         return [familyName, apiModels];

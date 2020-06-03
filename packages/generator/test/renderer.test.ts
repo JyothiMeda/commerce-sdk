@@ -97,8 +97,10 @@ describe("Rendering Tests", () => {
     const allApis = {};
     await Promise.all(
       _.keysIn(apiConfig).map(async apiGroup => {
-        allApis[apiGroup] = await Promise.all(
-          processApiFamily(apiGroup, apiConfig, apiInputDir)
+        allApis[apiGroup] = await processApiFamily(
+          apiGroup,
+          apiConfig,
+          apiInputDir
         );
       })
     );

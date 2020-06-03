@@ -116,7 +116,7 @@ export function processApiFamily(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   apiFamilyConfig: any,
   inputDir: string
-): Promise<WebApiBaseUnit>[] {
+): Promise<WebApiBaseUnit[]> {
   const promises = [];
   const ramlFileFromFamily = apiFamilyConfig[apiFamily];
   _.map(ramlFileFromFamily, (apiMeta: RestApi) => {
@@ -131,7 +131,7 @@ export function processApiFamily(
     );
   });
 
-  return promises;
+  return Promise.all(promises);
 }
 
 /**
@@ -165,6 +165,7 @@ export function resolveApiModel(
 
 /**
  * Get normalized name for the file/directory that is created while rendering the templates
+ *
  * @param name - File or directory name to normalize
  * @returns a normalized name
  */
